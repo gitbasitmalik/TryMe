@@ -1,6 +1,6 @@
 // OpenRouter API service
 
-const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY || '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';
+const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY || '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';
 const OPENROUTER_BASE_URL = import.meta.env.VITE_OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1';
 
 // Validate API key is present
@@ -131,7 +131,6 @@ class OpenRouterAPI {
 
       console.log('Sending streaming request to OpenRouter:', requestBody);
       console.log('API Key present:', !!this.apiKey);
-      console.log('Full API Key:', this.apiKey);
 
       const response = await fetch(`${this.baseURL}/chat/completions`, {
         method: 'POST',
@@ -168,11 +167,18 @@ class OpenRouterAPI {
 
       const decoder = new TextDecoder();
       let buffer = '';
+      let hasReceivedContent = false;
 
       while (true) {
         const { done, value } = await reader.read();
         
         if (done) {
+          console.log('Stream completed');
+          if (!hasReceivedContent) {
+            console.log('No content received, calling onError');
+            onError(new Error('No content received from stream'));
+            return;
+          }
           onComplete();
           break;
         }
@@ -182,23 +188,29 @@ class OpenRouterAPI {
         buffer = lines.pop() || '';
 
         for (const line of lines) {
+          if (line.trim() === '') continue;
+          
           if (line.startsWith('data: ')) {
             const data = line.slice(6);
             if (data === '[DONE]') {
+              console.log('Received [DONE] signal');
               onComplete();
               return;
             }
 
             try {
               const parsed = JSON.parse(data);
+              console.log('Parsed chunk:', parsed);
+              
               const content = parsed.choices?.[0]?.delta?.content;
               if (content) {
-                console.log('Received chunk:', content);
+                console.log('Received content chunk:', content);
+                hasReceivedContent = true;
                 onChunk(content);
               }
             } catch (e) {
-              // Skip invalid JSON
               console.log('Invalid JSON in stream:', data);
+              // Don't throw error for invalid JSON, just skip
             }
           }
         }
