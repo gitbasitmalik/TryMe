@@ -1,86 +1,142 @@
-# TryMe - Personal AI Assistant
+# TryMe - AI Chat Application
 
-A modern React application built with Vite, TypeScript, and Tailwind CSS.
+A modern AI-powered chat application built with React, TypeScript, and OpenRouter API. Features a beautiful dark/light theme interface with real-time streaming responses.
 
-## Project Structure
+## ✨ Features
 
-```
-src/
-├── assets/          # Static assets (images, icons, etc.)
-├── components/      # Reusable React components
-│   └── ui/         # UI components (buttons, inputs, etc.)
-├── hooks/          # Custom React hooks
-├── lib/            # Library configurations and utilities
-├── pages/          # Page components (if using routing)
-├── styles/         # Global styles and CSS modules
-├── types/          # TypeScript type definitions
-├── utils/          # Utility functions
-├── App.tsx         # Main application component
-├── index.css       # Global styles
-└── main.tsx        # Application entry point
-```
+- 🤖 **AI Chat Interface** - Powered by Qwen 3 Coder model
+- 🌙 **Dark/Light Theme** - Beautiful theme switching with system preference support
+- 💬 **Real-time Streaming** - See AI responses as they're generated
+- 📱 **Responsive Design** - Works perfectly on desktop and mobile
+- 💾 **Conversation History** - Save and manage your chat conversations
+- 🎨 **Modern UI** - Built with Tailwind CSS and Radix UI components
+- ⚡ **Fast & Lightweight** - Built with Vite for optimal performance
 
-## Getting Started
+## 🚀 Live Demo
+
+[Deployed on Vercel](https://your-app-name.vercel.app)
+
+## 🛠️ Tech Stack
+
+- **React 18** - UI library with hooks
+- **TypeScript** - Type safety and better development experience
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible component primitives
+- **OpenRouter API** - AI model integration
+- **Lucide React** - Beautiful icons
+
+## 📦 Installation
 
 ### Prerequisites
 
 - Node.js (v18 or higher)
-- pnpm (recommended) or npm
+- npm, yarn, or pnpm
 
-### Installation
+### Setup
 
-1. Clone the repository
-2. Install dependencies:
+1. **Clone the repository**
    ```bash
-   pnpm install
+   git clone https://github.com/your-username/tryme-chat-app.git
+   cd tryme-chat-app
    ```
 
-### Development
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Start the development server:
+3. **Set up environment variables**
+   ```bash
+   # Create .env file
+   echo "VITE_OPENROUTER_API_KEY=your-api-key-here" > .env
+   echo "VITE_OPENROUTER_BASE_URL=https://openrouter.ai/api/v1" >> .env
+   ```
 
-```bash
-pnpm dev
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:5173`
+
+## 🔧 Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+### Project Structure
+
+```
+src/
+├── components/      # React components
+│   ├── ui/         # UI components (buttons, inputs, etc.)
+│   └── theme-provider.tsx
+├── hooks/          # Custom React hooks
+│   ├── useChat.ts  # Chat functionality
+│   └── useLocalStorage.ts
+├── lib/            # API and utilities
+│   └── api.ts      # OpenRouter API integration
+├── types/          # TypeScript definitions
+└── App.tsx         # Main application
 ```
 
-The application will be available at `http://localhost:5173`
+## 🔐 Environment Variables
 
-### Building for Production
+Create a `.env` file in the root directory:
 
-Build the application:
-
-```bash
-pnpm build
+```env
+VITE_OPENROUTER_API_KEY=your-openrouter-api-key
+VITE_OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
 ```
 
-Preview the production build:
+## 🚀 Deployment
 
-```bash
-pnpm preview
-```
+### Vercel (Recommended)
 
-## Technologies Used
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
 
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **Radix UI** - Accessible component primitives
-- **Lucide React** - Icon library
+2. **Deploy to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Add environment variables in Vercel dashboard
+   - Deploy!
 
-## Scripts
+### Other Platforms
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm preview` - Preview production build
-- `pnpm lint` - Run ESLint
+- **Netlify** - Drag and drop the `dist` folder
+- **GitHub Pages** - Enable Pages in repository settings
+- **Firebase Hosting** - Use Firebase CLI
 
-## Features
+## 🤝 Contributing
 
-- Modern React with hooks
-- TypeScript for type safety
-- Tailwind CSS for styling
-- Radix UI components for accessibility
-- Dark mode support
-- Responsive design
-- ESLint for code quality
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## �� License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [OpenRouter](https://openrouter.ai) for AI model access
+- [Radix UI](https://radix-ui.com) for accessible components
+- [Tailwind CSS](https://tailwindcss.com) for styling
+- [Vite](https://vitejs.dev) for the build tool
+
+---
+
+Made with ❤️ by [Your Name]
