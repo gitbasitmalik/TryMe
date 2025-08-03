@@ -62,6 +62,7 @@ class OpenRouterAPI {
     console.log('- Base URL:', this.baseURL);
     console.log('- API Key present:', !!this.apiKey);
     console.log('- API Key length:', this.apiKey?.length || 0);
+    console.log('- API Key starts with:', this.apiKey?.substring(0, 10) + '...');
   }
 
   async chatCompletion(request: ChatCompletionRequest): Promise<ChatCompletionResponse> {
@@ -130,6 +131,7 @@ class OpenRouterAPI {
 
       console.log('Sending streaming request to OpenRouter:', requestBody);
       console.log('API Key present:', !!this.apiKey);
+      console.log('Full API Key:', this.apiKey);
 
       const response = await fetch(`${this.baseURL}/chat/completions`, {
         method: 'POST',
